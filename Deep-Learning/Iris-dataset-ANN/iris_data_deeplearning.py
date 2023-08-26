@@ -8,7 +8,7 @@ Original file is located at
 """
 
 import pandas as pd
-data = pd.read_csv("iris.data", delimiter=',', header = None)
+data = pd.read_csv("iris.data", delimiter=',', header=None)
 
 y = data[4]
 x = data.drop(columns=[4])
@@ -21,10 +21,7 @@ Y = pd.get_dummies(y1).values
 from sklearn.model_selection import train_test_split
 x_train, x_test, y_train, y_test = train_test_split(x , Y , test_size = 0.2 , random_state = 0)
 
-from sklearn.preprocessing import StandardScaler
-sc = StandardScaler()
-x_train = sc.fit_transform(x_train)
-x_test = sc.transform(x_test)
+
 
 import keras
 from keras.models import Sequential
@@ -37,7 +34,7 @@ model.add(Dense(8, activation='relu' ))
 model.add(Dense(3,  activation='softmax'))
 model.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
 
-output = model.fit(x_train, y_train, batch_size = 5, epochs=20)
+output = model.fit(x_train, y_train, batch_size = 5, epochs=30)
 
 y_pred = model.predict(x_test)
 #y_pred = (y_pred > 5)
